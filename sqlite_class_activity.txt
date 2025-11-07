@@ -1,0 +1,48 @@
+SELECT * FROM products
+SELECT * FROM sales_data
+SELECT * FROM sales_data INNER JOIN products on sales_data.product_id=products.product_id;
+SELECT COUNT(*) FROM sales_data INNER JOIN products on sales_data.product_id=products.product_id;
+SELECT strftime('%Y',date) as year, COUNT(*) from sales_data GROUP by year;
+SELECT strftime('%Y',date) as year, COUNT(*) AS sales_count from sales_data GROUP by year ORDER BY sales_count DESC;
+select strftime('%m',date) AS month_of_year, SUM(amount) FROM sales_data group BY month_of_year;
+SELECT strftime('%Y-%m',date) AS month_of_year, SUM(amount) FROM sales_data GROUP BY month_of_year;
+SELECT strftime('%d',date) as day, SUM(amount) from sales_data GROUP BY day;
+SELECT strftime('%w',date) as week_day, SUM(amount) AS total_sale FROM sales_data group BY week_day;
+SELECT * FROM sales_data WHERE LOWER(city) ='lagos';
+SELECT LOWER(city) FROM sales_data WHERE LOWER(city) ='lagos';
+select UPPER(region) from sales_data;
+SELECT * from sales_data where category LIKE '%electronics%'
+SELECT * FROM sales_data where amount = (SELECT MAX(amount)FROM sales_data)
+SELECT* FROM sales_data
+SELECT * from sales_data WHERE amount IS NULL
+SELECT DISTINCT (city) AS UNIQUE_cities FROM sales_data
+SELECT * FROM sales_data WHERE amount > 1000;
+SELECT COUNT (*) FROM sales_data
+SELECT * FROM sales_data WHERE region = 'South' AND amount BETWEEN 500 AND 1500;
+SELECT * FROM sales_data ORDER BY amount DESC;
+SELECT * FROM sales_data ORDER by city ASC  
+SELECT COUNT(*) AS lagos_sales FROM sales_data WHERE city = 'Lagos'
+SELECT SUM(amount) AS total_sales FROM sales_data
+SELECT city, sum(amount) AS city_sales FROM sales_data GROUP BY city
+SELECT region, AVG(amount) AS regional_sales FROM sales_data GROUP BY region HAVING regional_sales > 2000
+SELECT * FROM surveyedit2;
+SELECT student_id,favorite_subject,test_score FROM surveyedit2;
+SELECT COUNT(*) AS student_count FROM surveyedit2
+DELETE FROM surveyedit2 where student_id ISNULL
+SELECT MIN(test_score) as mininum_score, MAX(test_score) AS maximum_score, AVG(test_score) AS avarage_score FROM surveyedit2
+SELECT student_id,test_score FROM surveyedit2 WHERE test_score > 80.5
+SELECT student_id,test_score FROM surveyedit2 WHERE test_score < 80.5
+SELECT student_id,test_score FROM surveyedit2 WHERE test_score > 80.5 AND favorite_subject = 'Math'
+SELECT favorite_subject,COUNT(*) AS Student_count FROM surveyedit2 GROUP BY favorite_subject
+SELECT preferred_learning_method,COUNT(*) AS student_id FROM surveyedit2 GROUP BY preferred_learning_method
+SELECT student_id,study_hours_per_week,test_score FROM surveyedit2 WHERE test_score > 80.5
+SELECT * FROM products
+SELECT * FROM sales_data
+SELECT DISTINCT category from sales_data
+select count(DISTINCT category) FROM sales_data
+select category,SUM(amount) AS sale_sum from sales_data GROUP BY category
+select city,COUNT(*) AS sales_count from sales_data GROUP BY city
+select city,COUNT(*) AS sales_count FROM sales_data GROUP BY city HAVING sales_count
+SELECT region,SUM(amount) as sales_sum from sales_data group by region HAVING region IN ('North','South')
+SELECT region,SUM(amount) as sales_sum from sales_data group by region HAVING region = 'North' OR region = 'South'
+select category,AVG(amount) AS Sales_avg FROM sales_data GROUP BY category HAVING Sales_avg > 1000
